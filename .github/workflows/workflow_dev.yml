@@ -33,7 +33,7 @@ jobs:
     #if: github.event.pull_request.merged == 'true'
     needs: [Test]
     environment:
-      name: Test
+      name: Testing
     env:
       DBHOST: ${{ secrets.SQL_DB_HOST }}
       DBPORT: ${{ secrets.SQL_DB_PORT }}
