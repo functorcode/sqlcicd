@@ -17,6 +17,7 @@ jobs:
       - name: Run MySQL script (Staging)
         # if: ${{ github.ref == 'refs/heads/staging' }}
         run: |
+          echo ${{ github.ref }}
           mysql -h db4free.net -P 3306 -u testcicd -p"${{ secrets.STAGING_MYSQL_PASSWORD }}" < sqlscript.sql
 
       - name: Run MySQL script (Production)
