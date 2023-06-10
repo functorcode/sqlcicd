@@ -29,11 +29,11 @@ jobs:
         
     
   DeployStaging:
-    name: Deploy to test enviorment
+    name: Deploy to production enviorment
     #if: github.event.pull_request.merged == 'true'
     needs: [Test]
     environment:
-      name: Test
+      name: Production
     env:
       DBHOST: ${{ secrets.SQL_DB_HOST }}
       DBPORT: ${{ secrets.SQL_DB_PORT }}
@@ -47,8 +47,9 @@ jobs:
       - name: Run MySQL script
         run: |
           chmod +x commandscript.sh
-          echo "Deploying on SQL using variables in Test Enviorment"
+          echo "Deploying on SQL using variables in Production Enviorment"
           echo "$DBHOST"
           echo "$DBPORT"
           echo "$DBUSER"
           ./commandscript.sh $DBHOST $DBPORT $DBUSER $DBPASS
+          
