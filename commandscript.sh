@@ -1,0 +1,1 @@
+mysql -h $1 -P $2 -u $3 -p"$4" < sqlscript.sql

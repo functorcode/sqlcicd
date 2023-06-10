@@ -1,1 +1,1 @@
-CREATE TABLE `cicdsqltest`.`testtable` (`c1` INT NOT NULL , `c2` INT NOT NULL , `c3` INT NOT NULL , `c4` INT NOT NULL ) ENGINE = InnoDB; 
+CREATE TABLE  IF NOT EXISTS `cicdsqltest`.`testtable` (`c1` INT NOT NULL , `c2` INT NOT NULL , `c3` INT NOT NULL , `c4` INT NOT NULL ) ENGINE = InnoDB; 
