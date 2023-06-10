@@ -28,7 +28,7 @@ jobs:
             PORT="3306"
             USER="testcicd"
             DBPASS=${{ secrets.STAGING_MYSQL_PASSWORD }}
-            ./commandscript.sh $1 $2 $3 $4
+            ./commandscript.sh $HOST $PORT $USER $DBPASS
             # mysql -h db4free.net -P 3306 -u testcicd -p"${{ secrets.STAGING_MYSQL_PASSWORD }}" < sqlscript.sql
           fi
           if [[ $GITHUB_BASE_REF == 'prod' && $GITHUB_HEAD_REF == 'staging' ]]; then
@@ -36,6 +36,6 @@ jobs:
             PORT="3306"
             USER="testcicd"
             DBPASS=${{ secrets.PROD_MYSQL_PASSWORD }}
-            ./commandscript.sh $1 $2 $3 $4
+            ./commandscript.sh $HOST $PORT $USER $DBPASS
             # mysql -h db4free.net -P 3306 -u testcicd -p"${{ secrets.PROD_MYSQL_PASSWORD }}" < sqlscript.sql
           fi
