@@ -31,7 +31,7 @@ jobs:
     
   DeployStaging:
     name: Deploy to staging enviorment
-    if: github.event.ref == "refs/heads/staging"
+    if: github.event.ref == 'refs/heads/staging'
     needs: [Test]
     environment:
       name: Staging
