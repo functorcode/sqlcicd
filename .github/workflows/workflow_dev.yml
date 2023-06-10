@@ -1,10 +1,9 @@
-name: MySQL Script on Pull Request
+name: MySQL Script on Pull Request on Dev
 
 on:
   pull_request:
     branches:
-      - staging
-      - prod
+      - dev
 
 jobs:
   # Codelint:
@@ -32,17 +31,15 @@ jobs:
   DeployStaging:
     name: Deploy to staging enviorment
     #if: github.event.pull_request.merged == 'true'
-    #if: github.ref == 'refs/heads/staging'
     needs: [Test]
     environment:
       name: Staging
     env:
-      DBHOST: ${{ secrets.SQL_DB_HOST}}
-      DBPORT: ${{ secrets.SQL_DB_PORT}}
-      DBUSER: ${{ secrets.SQL_DB_USER}}
-      DBPASS: ${{ secrets.SQL_DB_PASS}}
+      DBHOST: ${{ secrets.SQL_DB_HOST }}
+      DBPORT: ${{ secrets.SQL_DB_PORT }}
+      DBUSER: ${{ secrets.SQL_DB_USER }}
+      DBPASS: ${{ secrets.SQL_DB_PASS }}
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -54,3 +51,4 @@ jobs:
           echo "$DBHOST"
           echo "$DBPORT"
           echo "$DBUSER"
+          ./commandscript.sh $DBHOST $DBPORT $DBUSER $DBPASS
