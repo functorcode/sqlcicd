@@ -32,7 +32,7 @@ jobs:
   DeployStaging:
     name: Deploy to staging enviorment
     #if: github.event.pull_request.merged == 'true'
-    if: github.ref == 'refs/heads/staging'
+    #if: github.ref == 'refs/heads/staging'
     needs: [Test]
     environment:
       name: Staging
