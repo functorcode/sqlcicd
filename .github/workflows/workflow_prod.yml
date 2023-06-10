@@ -35,9 +35,9 @@ jobs:
     environment:
       name: Production
     env:
-      DBHOST: ${{ secrets.SQL_DB_HOST }}
-      DBPORT: ${{ secrets.SQL_DB_PORT }}
-      DBUSER: ${{ secrets.SQL_DB_USER }}
+      DBHOST: ${{ vars.SQL_DB_HOST }}
+      DBPORT: ${{ vars.SQL_DB_PORT }}
+      DBUSER: ${{ vars.SQL_DB_USER }}
       DBPASS: ${{ secrets.SQL_DB_PASS }}
     runs-on: ubuntu-latest
     steps:
