@@ -17,6 +17,7 @@ jobs:
       - name: Run MySQL script (Staging)
         # if: ${{ github.ref == 'refs/heads/staging' }}
         run: |
+          echo "***"
           echo ${{ github.ref }}
           echo "****"
           echo $GITHUB_HEAD_REF
