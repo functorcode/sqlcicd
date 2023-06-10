@@ -33,7 +33,7 @@ jobs:
     name: Deploy to staging enviorment
     if: github.event.ref == "refs/heads/staging"
     needs: [Test]
-    enviorment:
+    environment:
       name: Staging
     env:
       DBHOST: ${{ secrets.SQL_DB_HOST}}
