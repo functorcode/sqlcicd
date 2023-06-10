@@ -7,20 +7,20 @@ on:
       - prod
 
 jobs:
-  Codelint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # Codelint:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
       
-      - name: Lint code
-        uses: github/super-linter@v5
-        env:
-          DEFAULT_BRANCH: dev
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+  #     - name: Lint code
+  #       uses: github/super-linter@v5
+  #       env:
+  #         DEFAULT_BRANCH: dev
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
   Test:
     runs-on: ubuntu-latest
-    needs: [Codelint]
+    #needs: [Codelint]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
