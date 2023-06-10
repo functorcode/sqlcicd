@@ -14,8 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run MySQL script (Staging)
-        # if: ${{ github.ref == 'refs/heads/staging' }}
+      - name: Run MySQL script
         run: |
           echo "***"
           echo ${{ github.ref }}
@@ -23,9 +22,9 @@ jobs:
           echo $GITHUB_HEAD_REF
           echo "****"
           echo $GITHUB_BASE_REF
-          mysql -h db4free.net -P 3306 -u testcicd -p"${{ secrets.STAGING_MYSQL_PASSWORD }}" < sqlscript.sql
-
-      - name: Run MySQL script (Production)
-        if: ${{ github.ref == 'refs/heads/prod' }}
-        run: |
-          mysql -h db4free.net -P 3306 -u testcicd -p"${{ secrets.PROD_MYSQL_PASSWORD }}" < sqlscript.sql
+          if [[ $GITHUB_BASE_REF == 'staging' && $GITHUB_HEAD_REF == 'dev' ]]; then
+            mysql -h db4free.net -P 3306 -u testcicd -p"${{ secrets.STAGING_MYSQL_PASSWORD }}" < sqlscript.sql
+          fi
+          if [[ $GITHUB_BASE_REF == 'prod' && $GITHUB_HEAD_REF == 'staging' ]]; then
+            mysql -h db4free.net -P 3306 -u testcicd -p"${{ secrets.PROD_MYSQL_PASSWORD }}" < sqlscript.sql
+          fi
